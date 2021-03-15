@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>View Jokes</title>
+</head>
+<body>
+	<form action="/home/viewJokes" class="form-inline">
+		<form action="/viewJokes" class="form-inline">
+			<div class="form-group mb-2">
+				<input type="text" class="form-control" name="body"
+					placeholder="Search Joke" /> <input type="submit" value="Search"
+					class="btn btn-lg btn-secondary btn-block" />
+			</div>
+		</form>
+		<div
+			style="width: 100%; overflow: hidden; margin-top: 5rem; padding-right: 10%; padding-left: 10%;">
+			<div class="card text-white bg-primary mb-3 mx-auto "
+				style="width: 1000px; float: left;">
+				<div class="card-header">
+					<h2>All Jokes</h2>
+				</div>
+				<div class="card card-body">
+					<table class="table table-hover sortable">
+						<thead>
+							<tr>
+								<th>Joke <i class="fas fa-sort"></i></th>
+								<th>Date <i class="fas fa-sort"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="joke:${jokes}">
+								<td th:text="${joke.body}"></td>
+								<td th:text="${joke.date_time}"></td>
+								<td><a th:href="@{/home/modifyJoke/{id}(id=${joke.id})}"
+									class="btn btn-secondary">Modify Joke </a></td>
+								<form th:action="@{/home/deleteJoke/{id}(id=${joke.id})}"
+									method="POST" th:object="${joke}">
+									<input type="hidden" name="_method" value="DELETE" />
+									<td><button type="submit" class="btn btn-secondary">Delete
+											Joke</button></td>
+								</form>
+							</tr>
+						</tbody>
+					</table>
+					</br>
+					<form class="form-horizontal" role="form" method="GET"
+						th:action="@{/home}">
+						<button type="submit" class="btn btn-lg btn-secondary btn-block">Home</button>
+					</form>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>View Jokes</title>
+</head>
+<body>
+
+	<div
+		style="width: 100%; overflow: hidden; margin-top: 5rem; padding-right: 10%; padding-left: 10%;">
+		<div class="card text-white bg-primary mb-3 mx-auto "
+			style="width: 1000px; float: left;">
+			<div class="card-header">
+				<h2>Random Jokes</h2>
+			</div>
+			<div class="card card-body">
+				<table class="table table-hover sortable">
+					<thead>
+						<tr>
+							<th>Joke <i class="fas fa-sort"></i></th>
+							<th>Date <i class="fas fa-sort"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td th:text="${joke.body}"></td>
+							<td th:text="${joke.date_time}"></td>
+						</tr>
+					</tbody>
+				</table>
+				</br>
+				<form class="form-horizontal" role="form" method="GET"
+					th:action="@{/home}">
+					<button type="submit" class="btn btn-lg btn-secondary btn-block">Home</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

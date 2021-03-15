@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Modify Joke</title>
+</head>
+<body>
+	<section layout:fragment="content">
+		<div class="card text-white bg-primary mb-3 mx-auto"
+			style="max-width: 55rem; margin-top: 6rem;">
+			<div class="card-header">
+				<h2>Modify Joke</h2>
+			</div>
+			<div class="card-body">
+				<div class="container">
+					<form th:action="@{/home/modifyJoke}" method="POST"
+						th:object="${joke}">
+						<input type="hidden" name="_method" value="PUT" /> <input
+							type="hidden" name="id" th:value="${joke.id}" />
+						<h3>
+							Joke: <b><span th:utext="${joke.body}"></span></b>
+						</h3>
+						<br />
+						<h3>
+							Date: <b><span th:utext="${joke.date_time}"></span></b>
+						</h3>
+						<br />
+						<div class="form-group">
+							<label for="body" class="col-form-label">Modify Joke</label> <input
+								type="text" class="form-control" th:field="*{body}" name="body"
+								id="body">
+						</div>
+						<button type="submit" class="btn btn-lg btn-secondary btn-block">Modify
+							Joke</button>
+					</form>
+					</br>
+					<form class="form-horizontal" role="form" method="GET"
+						th:action="@{/home}">
+						<button type="submit" class="btn btn-lg btn-secondary btn-block">Home</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
